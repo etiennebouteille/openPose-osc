@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@tensorflow/tfjs": "0.10.3",
+    "node-osc": "^2.1.0",
+    "socket.io": "^2.1.0",
     "stats.js": "^0.17.0"
   },
   "scripts": {

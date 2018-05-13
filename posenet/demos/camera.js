@@ -23,6 +23,8 @@ const maxVideoSize = 513;
 const canvasSize = 400;
 const stats = new Stats();
 
+var osc = require("node-osc");
+
 function isAndroid() {
   return /Android/i.test(navigator.userAgent);
 }
@@ -103,6 +105,7 @@ const guiState = {
  * Sets up dat.gui controller on the top-right of the window
  */
 function setupGui(cameras, net) {
+
   guiState.net = net;
 
   if (cameras.length > 0) {
@@ -225,6 +228,11 @@ function detectPoseInRealTime(video, net) {
         const pose = await guiState.net.estimateSinglePose(video, imageScaleFactor, flipHorizontal, outputStride);
         poses.push(pose);
 
+        //console.log(oscData(pose));
+       // var client = new osc.Client('127.0.0.1', 3333);
+        //client.send(oscData(pose), function(){client.kill();});
+        //client.send("/run-code", "play 70", () => { client.kill() });
+
         minPoseConfidence = Number(
           guiState.singlePoseDetection.minPoseConfidence);
         minPartConfidence = Number(
@@ -274,6 +282,11 @@ function detectPoseInRealTime(video, net) {
   }
 
   poseDetectionFrame();
+  //var client = new osc.Client("localhost", 3333);
+  //client.send(oscData(pose), function(){client.kill();});
+  //client.send(oscData(pose), 20, 12, () => { client.kill() });
+  //client.send("/hello", 20, 12, () => { client.kill() });
+  //console.log(pose);
 }
 
 /**
@@ -299,9 +312,28 @@ export async function bindPage() {
   setupGui([], net);
   setupFPS();
   detectPoseInRealTime(video, net);
+  //var client = new osc.Client("localhost", 3333);
 }
 
 navigator.getUserMedia = navigator.getUserMedia ||
   navigator.webkitGetUserMedia ||
   navigator.mozGetUserMedia;
 bindPage(); // kick off the demo
+
+//OSC related code
+
+function oscData(pose){
+    var message = ["/openPose"];
+        for(let i = 0; i < pose.keypoints.length; i++){
+            message.push(i);
+            if(pose.keypoints[i].score >= Number(guiState.singlePoseDetection.minPartConfidence)){
+                message.push(1);
+            }else{
+                message.push(0);
+            }
+            message.push(pose.keypoints[i].position.x);
+            message.push(pose.keypoints[i].position.y);
+        }
+return message;
+}
+
