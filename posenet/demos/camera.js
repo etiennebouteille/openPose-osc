@@ -237,20 +237,13 @@ function detectPoseInRealTime(video, net) {
             video, imageScaleFactor, flipHorizontal, outputStride);
         poses.push(pose);
 
-<<<<<<< HEAD
         //console.log(oscData(pose));
        // var client = new osc.Client('127.0.0.1', 3333);
         //client.send(oscData(pose), function(){client.kill();});
         //client.send("/run-code", "play 70", () => { client.kill() });
 
-        minPoseConfidence = Number(
-          guiState.singlePoseDetection.minPoseConfidence);
-        minPartConfidence = Number(
-          guiState.singlePoseDetection.minPartConfidence);
-=======
         minPoseConfidence = +guiState.singlePoseDetection.minPoseConfidence;
         minPartConfidence = +guiState.singlePoseDetection.minPartConfidence;
->>>>>>> upstream/master
         break;
       case 'multi-pose':
         poses = await guiState.net.estimateMultiplePoses(
@@ -335,10 +328,9 @@ export async function bindPage() {
 }
 
 navigator.getUserMedia = navigator.getUserMedia ||
-<<<<<<< HEAD
-  navigator.webkitGetUserMedia ||
-  navigator.mozGetUserMedia;
-bindPage(); // kick off the demo
+    navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+// kick off the demo
+bindPage();
 
 //OSC related code
 
@@ -357,8 +349,3 @@ function oscData(pose){
 return message;
 }
 
-=======
-    navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-// kick off the demo
-bindPage();
->>>>>>> upstream/master

@@ -1538,6 +1538,11 @@ bindings@~1.2.1:
   resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.2.1.tgz#14ad6113812d2d37d72e67b4cacb4bb726505f11"
   integrity sha1-FK1hE4EtLTfXLme0ystLtyZQXxE=
 
+binpack@~0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/binpack/-/binpack-0.1.0.tgz#bd3d0974c3f2a0446e17df4f60b55a72a205a97e"
+  integrity sha1-vT0JdMPyoERuF99PYLVacqIFqX4=
+
 bluebird@^3.0.5:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
@@ -3730,6 +3735,11 @@ json5@^1.0.1:
   dependencies:
     minimist "^1.2.0"
 
+jspack@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/jspack/-/jspack-0.0.4.tgz#32dd35c7fdcb3e3456c18fbb7ef9ed0bc6238177"
+  integrity sha1-Mt01x/3LPjRWwY+7fvntC8YjgXc=
+
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -4065,6 +4075,14 @@ node-libs-browser@^2.0.0:
     util "^0.10.3"
     vm-browserify "0.0.4"
 
+node-osc@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/node-osc/-/node-osc-3.0.0.tgz#26b7fecc01566d0bbcd694bebaf8a16fbf653a78"
+  integrity sha512-/NftDs0/RDK1PX9dxDsDrEV99gwv1r+HfEjX/myUXoQuRMaU7x/441DzPSdXsYxJF19ddxSoWEVXWMuB+cF7jA==
+  dependencies:
+    jspack "0.0.4"
+    osc-min "^1.1.1"
+
 node-pre-gyp@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.10.0.tgz#6e4ef5bb5c5203c6552448828c852c40111aac46"
@@ -4299,6 +4317,13 @@ os-tmpdir@^1.0.0, os-tmpdir@^1.0.1, os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
   integrity sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
+
+osc-min@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/osc-min/-/osc-min-1.1.1.tgz#8580443a3abb02f73254f5a286340dcbe3cf3f07"
+  integrity sha1-hYBEOjq7AvcyVPWihjQNy+PPPwc=
+  dependencies:
+    binpack "~0"
 
 osenv@^0.1.4:
   version "0.1.5"
