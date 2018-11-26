@@ -46,5 +46,49 @@ const connectedPartNames: StringTuple[] = [
   ['leftShoulder', 'rightShoulder'], ['leftHip', 'rightHip']
 ];
 
-export const connectedPartIndeces = connectedPartNames.map(
+/*
+ * Define the skeleton. This defines the parent->child relationships of our
+ * tree. Arbitrarily this defines the nose as the root of the tree, however
+ * since we will infer the displacement for both parent->child and
+ * child->parent, we can define the tree root as any node.
+ */
+export const poseChain: StringTuple[] = [
+  ['nose', 'leftEye'], ['leftEye', 'leftEar'], ['nose', 'rightEye'],
+  ['rightEye', 'rightEar'], ['nose', 'leftShoulder'],
+  ['leftShoulder', 'leftElbow'], ['leftElbow', 'leftWrist'],
+  ['leftShoulder', 'leftHip'], ['leftHip', 'leftKnee'],
+  ['leftKnee', 'leftAnkle'], ['nose', 'rightShoulder'],
+  ['rightShoulder', 'rightElbow'], ['rightElbow', 'rightWrist'],
+  ['rightShoulder', 'rightHip'], ['rightHip', 'rightKnee'],
+  ['rightKnee', 'rightAnkle']
+];
+
+export const connectedPartIndices = connectedPartNames.map(
     ([jointNameA, jointNameB]) => ([partIds[jointNameA], partIds[jointNameB]]));
+
+export const partChannels: string[] = [
+  'left_face',
+  'right_face',
+  'right_upper_leg_front',
+  'right_lower_leg_back',
+  'right_upper_leg_back',
+  'left_lower_leg_front',
+  'left_upper_leg_front',
+  'left_upper_leg_back',
+  'left_lower_leg_back',
+  'right_feet',
+  'right_lower_leg_front',
+  'left_feet',
+  'torso_front',
+  'torso_back',
+  'right_upper_arm_front',
+  'right_upper_arm_back',
+  'right_lower_arm_back',
+  'left_lower_arm_front',
+  'left_upper_arm_front',
+  'left_upper_arm_back',
+  'left_lower_arm_back',
+  'right_hand',
+  'right_lower_arm_front',
+  'left_hand'
+];

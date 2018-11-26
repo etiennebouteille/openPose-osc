@@ -1,0 +1,50 @@
+{
+  "name": "@tensorflow-models/speech-commands",
+  "version": "0.2.2",
+  "description": "Speech-command recognizer in TensorFlow.js",
+  "main": "dist/index.js",
+  "unpkg": "dist/speech-commands.min.js",
+  "jsdelivr": "dist/speech-commands.min.js",
+  "jsnext:main": "dist/speech-commands.esm.js",
+  "module": "dist/speech-commands.esm.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tensorflow/tfjs-models.git"
+  },
+  "peerDependencies": {
+    "@tensorflow/tfjs": "^0.13.1"
+  },
+  "devDependencies": {
+    "@tensorflow/tfjs": "^0.13.1",
+    "@tensorflow/tfjs-node": "^0.1.18",
+    "@types/jasmine": "~2.8.8",
+    "@types/rimraf": "^2.0.2",
+    "@types/tempfile": "^2.0.0",
+    "babel-core": "~6.26.0",
+    "babel-plugin-transform-runtime": "~6.23.0",
+    "clang-format": "^1.2.4",
+    "dct": "^0.0.3",
+    "jasmine": "^3.2.0",
+    "jasmine-core": "^3.2.1",
+    "kissfft-js": "^0.1.8",
+    "rimraf": "2.6.2",
+    "rollup": "~0.60.7",
+    "rollup-plugin-node-resolve": "~3.3.0",
+    "rollup-plugin-typescript2": "~0.13.0",
+    "rollup-plugin-uglify": "~3.0.0",
+    "tempfile": "2.0.0",
+    "ts-node": "~5.0.0",
+    "tslint": "~5.10.0",
+    "tslint-no-circular-imports": "^0.6.1",
+    "typescript": "2.9.2",
+    "yalc": "~1.0.0-pre.21"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint -p . -t verbose",
+    "publish-local": "rimraf dist && yarn build && rollup -c && yalc push",
+    "test": "ts-node run_tests.ts"
+  },
+  "license": "Apache-2.0"
+}

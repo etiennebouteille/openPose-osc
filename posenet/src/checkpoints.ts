@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licnses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,31 +15,30 @@
  * =============================================================================
  */
 
-import {ConvolutionDefinition, mobileNetArchitectures} from './mobilenet'
+import {ConvolutionDefinition, mobileNetArchitectures} from './mobilenet';
 
-const GOOGLE_CLOUD_STORAGE_DIR =
-    'https://storage.googleapis.com/tfjs-models/weights/posenet/';
+const BASE_URL = 'https://storage.googleapis.com/tfjs-models/weights/posenet/';
 
 export type Checkpoint = {
   url: string,
   architecture: ConvolutionDefinition[]
-}
+};
 
 export const checkpoints: {[multiplier: number]: Checkpoint} = {
   1.01: {
-    url: GOOGLE_CLOUD_STORAGE_DIR + 'mobilenet_v1_101/',
+    url: BASE_URL + 'mobilenet_v1_101/',
     architecture: mobileNetArchitectures[100]
   },
   1.0: {
-    url: GOOGLE_CLOUD_STORAGE_DIR + 'mobilenet_v1_100/',
+    url: BASE_URL + 'mobilenet_v1_100/',
     architecture: mobileNetArchitectures[100]
   },
   0.75: {
-    url: GOOGLE_CLOUD_STORAGE_DIR + 'mobilenet_v1_075/',
+    url: BASE_URL + 'mobilenet_v1_075/',
     architecture: mobileNetArchitectures[75]
   },
   0.5: {
-    url: GOOGLE_CLOUD_STORAGE_DIR + 'mobilenet_v1_050/',
+    url: BASE_URL + 'mobilenet_v1_050/',
     architecture: mobileNetArchitectures[50]
   }
-}
+};
