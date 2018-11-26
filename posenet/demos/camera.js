@@ -237,7 +237,7 @@ function detectPoseInRealTime(video, net) {
             video, imageScaleFactor, flipHorizontal, outputStride);
         poses.push(pose);
 
-        //console.log(oscData(pose));
+        console.log(oscData(pose));
        // var client = new osc.Client('127.0.0.1', 3333);
         //client.send(oscData(pose), function(){client.kill();});
         //client.send("/run-code", "play 70", () => { client.kill() });
