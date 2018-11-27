@@ -24,8 +24,6 @@ const videoWidth = 600;
 const videoHeight = 500;
 const stats = new Stats();
 
-var osc = require('node-osc');
-
 function isAndroid() {
   return /Android/i.test(navigator.userAgent);
 }
@@ -195,10 +193,6 @@ function setupFPS() {
   document.body.appendChild(stats.dom);
 }
 
-function setupOSC(){
-  //console.log(oscData(pose));
-  var client = new osc.Client('127.0.0.1', 3333);
-}
 
 /**
  * Feeds an image to posenet to estimate poses - this is where the magic
@@ -242,9 +236,7 @@ function detectPoseInRealTime(video, net) {
             video, imageScaleFactor, flipHorizontal, outputStride);
         poses.push(pose);
 
-        sendOSC(pose);
-        //client.send(oscData(pose), function(){client.kill();});
-        //client.send("/run-code", "play 70", () => { client.kill() });
+        console.log(oscData(pose));
 
         minPoseConfidence = +guiState.singlePoseDetection.minPoseConfidence;
         minPartConfidence = +guiState.singlePoseDetection.minPartConfidence;
@@ -363,8 +355,4 @@ return message;
 }
 
 function sendOSC(pose){
-    var data = oscData(pose);
-    var msg = new osc.Message(data);
-
-    client.send(data);
 }
