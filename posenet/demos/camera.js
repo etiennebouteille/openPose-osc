@@ -317,6 +317,12 @@ export async function bindPage() {
     throw e;
   }
 
+  var port = new osc.WebSocketPort({
+    url: "ws://localhost:8081"
+  });
+
+  port.open();
+
   setupGui([], net);
   setupFPS();
   setupOSC();
@@ -355,4 +361,8 @@ return message;
 }
 
 function sendOSC(pose){
+    port.send({
+        address: "/openport",
+        args: pose
+    });
 }
