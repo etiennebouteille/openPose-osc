@@ -24,7 +24,7 @@ const videoWidth = 600;
 const videoHeight = 500;
 const stats = new Stats();
 
-var osc = require("node-osc");
+var osc = require('node-osc');
 
 function isAndroid() {
   return /Android/i.test(navigator.userAgent);
@@ -78,7 +78,7 @@ async function loadVideo() {
 }
 
 const guiState = {
-  algorithm: 'multi-pose',
+  algorithm: 'single-pose',
   input: {
     mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
     outputStride: 16,
@@ -195,6 +195,11 @@ function setupFPS() {
   document.body.appendChild(stats.dom);
 }
 
+function setupOSC(){
+  //console.log(oscData(pose));
+  var client = new osc.Client('127.0.0.1', 3333);
+}
+
 /**
  * Feeds an image to posenet to estimate poses - this is where the magic
  * happens. This function loops with a requestAnimationFrame method.
@@ -237,8 +242,7 @@ function detectPoseInRealTime(video, net) {
             video, imageScaleFactor, flipHorizontal, outputStride);
         poses.push(pose);
 
-        console.log(oscData(pose));
-       // var client = new osc.Client('127.0.0.1', 3333);
+        sendOSC(pose);
         //client.send(oscData(pose), function(){client.kill();});
         //client.send("/run-code", "play 70", () => { client.kill() });
 
@@ -323,6 +327,7 @@ export async function bindPage() {
 
   setupGui([], net);
   setupFPS();
+  setupOSC();
   detectPoseInRealTime(video, net);
   //var client = new osc.Client("localhost", 3333);
 }
@@ -334,6 +339,14 @@ bindPage();
 
 //OSC related code
 
+//Converts a pose object to a OSC formated string
+//String is formated as such: int int float float
+//17 times in a row
+//first int is body part reference
+//second int is a boolean, if 0 the part has not been found
+//float are x and y position
+
+//
 function oscData(pose){
     var message = ["/openPose"];
         for(let i = 0; i < pose.keypoints.length; i++){
@@ -349,3 +362,9 @@ function oscData(pose){
 return message;
 }
 
+function sendOSC(pose){
+    var data = oscData(pose);
+    var msg = new osc.Message(data);
+
+    client.send(data);
+}
